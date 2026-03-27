@@ -57,3 +57,21 @@ SELECT
     calculate_deduction(e.id) AS deduction,
     e.salary - calculate_deduction(e.id) AS final_salary
 FROM employees e;
+
+==========================TESTING=============================
+
+-- Test procedure
+CALL new_employee('Farsana', 60000, 4, 2);
+
+-- Test salary log trigger
+UPDATE employees SET salary = 70000 WHERE id = 3;
+SELECT * FROM salary_log;
+
+-- Test absence trigger
+INSERT INTO attendance(employee_id, date, status)
+VALUES(1, CURRENT_DATE, 'Absent');
+
+SELECT * FROM salary_deduction;
+
+-- Test function
+SELECT calculate_deduction(15);
