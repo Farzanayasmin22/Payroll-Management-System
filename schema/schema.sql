@@ -1,5 +1,6 @@
-### PAYROLL-MANAGEMENT-SYSTEM Schema
-
+======================================================================================
+------------------------PAYROLL-MANAGEMENT-SYSTEM Schema------------------------------
+======================================================================================
 DROP TABLE IF EXISTS salary_log;
 DROP TABLE IF EXISTS salary_deduction;
 DROP TABLE IF EXISTS leave_requests;
