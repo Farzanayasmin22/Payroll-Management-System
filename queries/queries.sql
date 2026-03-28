@@ -50,13 +50,49 @@ LEFT JOIN salary_deduction s ON e.id = s.employee_id
 GROUP BY e.id, e.name
 ORDER BY total_salary_deduction DESC;
 
--- 11: Final salary after deduction
+-- 11: Employees with More Than 5 Absences
+SELECT e.name , COUNT(*) AS absent_days
+FROM attendance a
+JOIN employees e ON a.employee_id = e.id
+WHERE a.status = 'Absent'
+GROUP BY e.name
+HAVING COUNT(*) > 5
+ORDER BY absent_days DESC;
+
+-- 12: Employees with No Deductions AND No Leave
+SELECT e.name
+FROM employees e
+WHERE e.id NOT IN (
+	SELECT employee_id
+	FROM salary_deduction
+) AND e.id NOT IN (
+	SELECT employee_id
+	FROM leave_requests
+);
+
+-- 13: Final salary after deduction
 SELECT
     e.name,
     e.salary,
     calculate_deduction(e.id) AS deduction,
     e.salary - calculate_deduction(e.id) AS final_salary
 FROM employees e;
+
+
+-- 14: Payroll Report
+SELECT
+    e.name,
+    d.dept_name,
+    r.role_name,
+    p.total_salary,
+    p.total_deductions,
+    p.net_salary,
+    p.generated_at
+FROM employees e
+LEFT JOIN payroll p ON p.employee_id = e.id
+LEFT JOIN departments d ON d.dept_id = e.dept_id
+LEFT JOIN roles r ON r.role_id = e.role_id
+ORDER BY p.generated_at DESC;
 
 ==========================TESTING=============================
 
