@@ -75,3 +75,10 @@ SELECT * FROM salary_deduction;
 
 -- Test function
 SELECT calculate_deduction(15);
+
+
+SELECT generate_payroll(1);
+SELECT generate_payroll(35);
+SELECT generate_payroll(21);
+
+SELECT * FROM payroll;
