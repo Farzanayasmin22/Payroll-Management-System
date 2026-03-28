@@ -29,7 +29,8 @@ The project is organized into multiple modules:
 - Leave Requests
 - Salary Deduction
 - Salary Log
-
+- Payaroll
+  
 ---
 
 ## ⚙️ Features Implemented
@@ -55,6 +56,7 @@ The project is organized into multiple modules:
 
 ### 🔹 6. Functions
 - Calculate salary deduction based on attendance
+- Calculate payroll of an employee
 
 ---
 
