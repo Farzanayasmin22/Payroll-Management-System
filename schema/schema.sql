@@ -49,3 +49,12 @@ CREATE TABLE salary_log(
 	new_salary NUMERIC,
 	changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE payroll(
+    payroll_id SERIAL PRIMARY KEY,
+    employee_id INT NOT NULL REFERENCES employees(id) ON DELETE CASCADE,
+    total_salary NUMERIC NOT NULL,
+    total_deductions NUMERIC NOT NULL DEFAULT 0,
+    net_salary NUMERIC NOT NULL,
+    generated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
