@@ -70,7 +70,14 @@ WHERE e.id NOT IN (
 	FROM leave_requests
 );
 
--- 13: Final salary after deduction
+-- 13: Highest postition employees and their ranking
+SELECT
+	name ,
+	salary ,
+	DENSE_RANK() OVER(ORDER BY salary DESC) AS rank
+FROM employees;
+
+-- 14: Final salary after deduction
 SELECT
     e.name,
     e.salary,
@@ -79,7 +86,7 @@ SELECT
 FROM employees e;
 
 
--- 14: Payroll Report
+-- 15: Payroll Report
 SELECT
     e.name,
     d.dept_name,
